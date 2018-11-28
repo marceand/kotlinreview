@@ -2,18 +2,33 @@ fun main(args: Array<String>) {
 
     whenExpression("Marcelino")
 
-    forloop(intArrayOf(1,2,3,4,5,6))
+    forLoop(intArrayOf(1,2,3,4,5,6))
 
     runningFunction{x,y -> x+y}
     runningFunction{x,y -> x*y}
 
     runFunctionExtension()
+
     runGenericExtension()
+
+    runExtensionProperty()
+}
+
+fun runExtensionProperty() {
+    val numberOfVowels = "Marcelino".numVowels
+    println("Numbers of vowels is: $numberOfVowels")
+
 }
 
 fun runGenericExtension() {
 
-
+    val name = "Marcelino Yax"
+    val age = 20
+    val result = age.concatenate(name)
+    println(result)
+}
+fun <T> T.concatenate(input: T): String {
+   return "$input is $this"
 }
 
 fun runFunctionExtension() {
@@ -39,7 +54,7 @@ fun whenExpression(name: String){
     println("$name profession is $profession")
 }
 
-fun forloop(array: IntArray) {
+fun forLoop(array: IntArray) {
 
     for(element in array){
         println(element)
@@ -58,5 +73,8 @@ fun forloop(array: IntArray) {
 fun String.addLastName(secondValue: String = ""): String{
     return "$this  $secondValue"
 }
+
+val String.numVowels
+    get() = count { "aeiou".contains(it) }
 
 
