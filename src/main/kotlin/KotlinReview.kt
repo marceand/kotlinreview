@@ -12,6 +12,30 @@ fun main(args: Array<String>) {
     runGenericExtension()
 
     runExtensionProperty()
+
+    runNullSafetyOperator()
+
+    runFilterFunction()
+}
+
+fun runFilterFunction() {
+    val integerList = listOf(1,3,4,4,2,2)
+    val filteredList = integerList.filter {it % 2 == 0 }
+    println(filteredList)
+}
+
+fun runNullSafetyOperator() {
+    var beverage: String ?= null
+    var print = beverage ?: "no beverage"
+    println(print)
+
+    val name = getName()
+    val length = name?.length ?: -1
+    println(length)
+}
+
+fun getName(): String?{
+    return null
 }
 
 fun runExtensionProperty() {
