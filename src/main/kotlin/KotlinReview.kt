@@ -1,21 +1,64 @@
 fun main(args: Array<String>) {
 
-    whenExpression("Marcelino")
+//    whenExpression("Marcelino")
+//
+//    forLoop(intArrayOf(1,2,3,4,5,6))
+//
+//    runningFunction{x,y -> x+y}
+//    runningFunction{x,y -> x*y}
+//
+//    runFunctionExtension()
+//
+//    runGenericExtension()
+//
+//    runExtensionProperty()
+//
+//    runNullSafetyOperator()
+//
+//    runFilterFunction()
 
-    forLoop(intArrayOf(1,2,3,4,5,6))
+//    runObjectDeclaration()
 
-    runningFunction{x,y -> x+y}
-    runningFunction{x,y -> x*y}
+//    runCompanionObject()
+//
+//    runObjectExpression()
 
-    runFunctionExtension()
+    runSealedOperation()
+}
 
-    runGenericExtension()
+fun runSealedOperation() {
+    val result = sealedOperation(3, Operation.Add(4))
+    println(result)
+}
 
-    runExtensionProperty()
+fun sealedOperation(x: Int, op: Operation) = when (op) {
+    is Operation.Add -> x + op.value
+    is Operation.Substract -> x - op.value
+    is Operation.Multiply -> x * op.value
+    is Operation.Divide -> x / op.value
+}
 
-    runNullSafetyOperator()
+fun runObjectExpression() {
+    // declaring an anonymous object
+    val dog = object: Dog(){
+        override fun pray() = println("Dog does not pray")
+    }
 
-    runFilterFunction()
+    dog.pray()
+}
+
+fun runCompanionObject() {
+    Person.callMe()
+}
+
+fun runObjectDeclaration() {
+    val list = listOf(3,4,5,6,7,1,0)
+    val sortedArray = AlgorithmManager.sortAlgorithm(list)
+    println(sortedArray)
+
+    val twiceArray = AlgorithmManager.multiplyTwice(sortedArray)
+    println(twiceArray)
+
 }
 
 fun runFilterFunction() {
@@ -100,5 +143,37 @@ fun String.addLastName(secondValue: String = ""): String{
 
 val String.numVowels
     get() = count { "aeiou".contains(it) }
+
+object AlgorithmManager{
+
+    fun sortAlgorithm(input: List<Int>): List<Int> {
+       return input.sortedDescending()
+    }
+
+    fun multiplyTwice(input: List<Int>): List<Int> {
+        return input.map { 2*it }
+    }
+}
+
+class Person {
+    companion object{
+        fun callMe() = println("I'm called.")
+    }
+}
+
+class Car {
+    companion object{
+        fun createInstance() = Car()
+    }
+}
+
+open class Dog() {
+    fun eat() = println("Eating food.")
+
+    fun talk() = println("Talking with people.")
+
+    open fun pray() = println("Praying god.")
+}
+
 
 
