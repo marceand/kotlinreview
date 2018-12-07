@@ -1,3 +1,7 @@
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
 fun main(args: Array<String>) {
 
 //    whenExpression("Marcelino")
@@ -23,7 +27,34 @@ fun main(args: Array<String>) {
 //
 //    runObjectExpression()
 
-    runSealedOperation()
+//    runSealedOperation()
+
+//    runCoroutine()
+
+//    runAbstractClass();
+
+    runInterface()
+}
+
+fun runInterface() {
+    val animal = TigerAnimal()
+    println(animal.name())
+}
+
+fun runAbstractClass() {
+    val myHouse: House = MyHouse()
+    println(myHouse.isClean())
+    println(myHouse.isOpen())
+    println(myHouse.name())
+}
+
+fun runCoroutine() {
+    GlobalScope.launch{ // launch new coroutine in background and continue
+        delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+        println("World!") // print after delay
+    }
+    println("Hello,") // main thread continues while coroutine is delayed
+    Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
 }
 
 fun runSealedOperation() {
@@ -73,7 +104,7 @@ fun runNullSafetyOperator() {
     println(print)
 
     val name = getName()
-    val length = name?.length ?: -1
+    val length = name?.length ?: -1 // "?." is called "safety call operator"
     println(length)
 }
 
