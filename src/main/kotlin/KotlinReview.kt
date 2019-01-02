@@ -20,20 +20,20 @@ fun main(args: Array<String>) {
 //    runNullSafetyOperator()
 //
 //    runFilterFunction()
-
+//
 //    runObjectDeclaration()
-
+//
 //    runCompanionObject()
 //
 //    runObjectExpression()
-
+//
 //    runSealedOperation()
-
+//
 //    runCoroutine()
-
+//
 //    runAbstractClass();
-
-    runInterface()
+//
+//    runInterface()
 }
 
 fun runInterface() {
@@ -103,12 +103,12 @@ fun runNullSafetyOperator() {
     var print = beverage ?: "no beverage"
     println(print)
 
-    val name = getName()
+    val name = getNameReturningNull() // returning null
     val length = name?.length ?: -1 // "?." is called "safety call operator"
     println(length)
 }
 
-fun getName(): String?{
+fun getNameReturningNull(): String?{
     return null
 }
 
